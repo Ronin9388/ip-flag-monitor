@@ -1,0 +1,74 @@
+:root {
+  --bg: #ffffff; --fg: #1d2330; --muted: #6b7385; --card: #f4f6fa; --line: #e2e6ee;
+  --accent: #1a73e8; --ok: #1e9e55; --warn: #e0a100; --bad: #d93025; --info: #9aa3b5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161a23; --fg: #e8ecf4; --muted: #98a2b8; --card: #1f2430; --line: #2b3241;
+    --accent: #6ea8ff; --ok: #3ccf7a; --warn: #f2c230; --bad: #ff6b5e; --info: #6c7589;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  width: 400px; max-height: 600px; overflow-y: auto;
+  background: var(--bg); color: var(--fg);
+  font: 13px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px 10px; position: sticky; top: 0; background: var(--bg); z-index: 2;
+}
+.brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+#hdrFlag { object-fit: contain; border-radius: 3px; box-shadow: 0 0 0 1px var(--line); background: var(--card); }
+.brand-text { min-width: 0; }
+h1 { margin: 0; font-size: 17px; font-weight: 650; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#hdrSub { margin: 1px 0 0; color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.actions { display: flex; align-items: center; gap: 8px; }
+#countdown { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 12px; }
+#refreshBtn {
+  width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--card); color: var(--fg); font-size: 16px; cursor: pointer;
+}
+#refreshBtn:hover { border-color: var(--accent); color: var(--accent); }
+#refreshBtn.busy { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.bar { height: 2px; background: var(--line); position: sticky; top: 53px; z-index: 2; }
+#barFill { height: 100%; width: 0; background: var(--accent); transition: width 1s linear; }
+
+main { padding: 10px 14px 14px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; }
+h2 { margin: 0 0 6px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 650; }
+.scans-title { margin: 14px 2px 6px; }
+.muted { color: var(--muted); }
+p.muted { margin: 4px 0; }
+
+.rows { display: flex; flex-direction: column; }
+.row { display: grid; grid-template-columns: 10px 96px 1fr; gap: 8px; align-items: start; padding: 3px 0; }
+.k { color: var(--muted); }
+.v { min-width: 0; overflow-wrap: anywhere; }
+.pip { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; background: transparent; }
+.pip.ok, .dot.ok { background: var(--ok); }
+.pip.warn, .dot.warn { background: var(--warn); }
+.pip.bad, .dot.bad { background: var(--bad); }
+.pip.info, .dot.info { background: var(--info); }
+
+button.copy {
+  all: unset; cursor: pointer; font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  font-size: 13px; font-weight: 600; border-bottom: 1px dotted var(--muted);
+}
+button.copy:hover { color: var(--accent); }
+button.copy.copied { color: var(--ok); }
+button.copy.copied::after { content: " ✓ copied"; font-family: system-ui, sans-serif; font-weight: 400; font-size: 11px; }
+.mono { font-family: ui-monospace, "SF Mono", Consolas, monospace; }
+.inline-flag { height: 12px; width: auto; vertical-align: -1px; margin-right: 5px; border-radius: 2px; box-shadow: 0 0 0 1px var(--line); }
+.flag-fallback { font-weight: 700; font-size: 11px; margin-right: 5px; color: var(--muted); }
+
+.group { border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px 6px; margin-bottom: 8px; background: var(--card); }
+.g-head { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+.g-title { font-weight: 600; }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--info); flex: none; }
+.dot.run { background: transparent; border: 2px solid var(--accent); border-top-color: transparent; animation: spin .8s linear infinite; }
+
+footer { display: flex; flex-direction: column; gap: 2px; margin-top: 8px; font-size: 11px; color: var(--muted); }
+#updated { font-variant-numeric: tabular-nums; }

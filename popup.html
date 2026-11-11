@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IP &amp; Flag Monitor</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img id="hdrFlag" alt="" width="44" height="30">
+      <div class="brand-text">
+        <h1 id="hdrCountry">Detecting…</h1>
+        <p id="hdrSub">Checking your connection</p>
+      </div>
+    </div>
+    <div class="actions">
+      <span id="countdown" title="Auto-refresh every 60 seconds">60s</span>
+      <button id="refreshBtn" type="button" title="Refresh &amp; re-scan now">↻</button>
+    </div>
+  </header>
+  <div class="bar"><div id="barFill"></div></div>
+
+  <main>
+    <section class="card">
+      <h2>This computer</h2>
+      <div id="me" class="rows"></div>
+    </section>
+
+    <section class="card">
+      <h2>Site you're viewing</h2>
+      <div id="site" class="rows"></div>
+    </section>
+
+    <h2 class="scans-title">Safe network checks</h2>
+    <div id="scans"></div>
+
+    <footer>
+      <span id="updated">—</span>
+      <span class="muted">HTTP/DNS/WebRTC checks only — no port scanning of other hosts</span>
+    </footer>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>
